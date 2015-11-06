@@ -1,2 +1,4 @@
-# intel-edison-yocto
-Mirror of Yocto image from Intel
+# intel-edison-docker
+
+Adding docker support to Edison Yocto image from Intel
+
