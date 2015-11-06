@@ -1,0 +1,1 @@
+meta-intel-edison/utils/Makefile.mk
