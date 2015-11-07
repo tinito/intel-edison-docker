@@ -111,7 +111,7 @@ CHROOTCMD="eval LC_ALL=C LANGUAGE=C LANG=C chroot $ROOTDIR"
 $CHROOTCMD apt-get clean
 $CHROOTCMD apt-get update
 $CHROOTCMD apt-get -y --force-yes install dbus nano openssh-server sudo bash-completion dosfstools
-$CHROOTCMD apt-get -y --force-yes install bluez hostapd file ethtool network-manager
+$CHROOTCMD apt-get -y --force-yes install hostapd file ethtool network-manager
 $CHROOTCMD apt-get -y --force-yes install python
 $CHROOTCMD apt-get -y --force-yes install ca-certificates ntp
 
@@ -139,9 +139,28 @@ fi
 cp -r tmp/deploy/deb $ROOTDIR/tmp/
   $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-image-3.10.17-yocto-standard_3.10.17-r0_i386.deb
   $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-3.10.17-yocto-standard_3.10.17-r0_i386.deb
-  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-*
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-bcm4334x_1.141-r47_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-bcm-bt-lpm_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-libcomposite_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-u-serial_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-usb-f-acm_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-g-multi_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-aufs_3.10.17-r0_i386.deb
   $CHROOTCMD dpkg -i /tmp/deb/all/bcm43340-fw_6.20.190-r2_all.deb
   $CHROOTCMD dpkg -i /tmp/deb/core2-32/bcm43340-bt_1.0-r0_i386.deb
+
+# Install modules required by docker
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-nf-conntrack_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-nf-nat_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-ip-tables_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-iptable-filter_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-nf-nat-ipv4_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-nf-defrag-ipv4_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-nf-conntrack-ipv4_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-iptable-nat_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-ipt-masquerade_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-xt-conntrack_3.10.17-r0_i386.deb
+  $CHROOTCMD dpkg -i /tmp/deb/edison/kernel-module-xt-nat_3.10.17-r0_i386.deb
 
 # Enables USB networking at startup
 cat > $ROOTDIR/lib/systemd/network/usb0.network <<EOF
